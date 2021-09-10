@@ -77,7 +77,7 @@ export const updateTodo = (req: any, res: any) => {
       }
     })
     .catch((err: any) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || `Error updating Todo with id= ${id}`,
       });
     });

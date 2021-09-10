@@ -12,6 +12,7 @@ import {
   updateTodo,
 } from "../controllers/todo.controller";
 import upload from "../utils/uploadFile";
+import validate from "../midleware/validator";
 
 let router = express.Router();
 
@@ -27,6 +28,7 @@ module.exports = (app: any) => {
     "/",
     authMiddleware,
     upload(TODO_IMAGE_DIRECTORY, "image/png" || "image/jpeg").single("image"),
+    validate,
     checkIfEmptyBody,
     createTodo
   );
@@ -42,6 +44,7 @@ module.exports = (app: any) => {
       Todo,
       "imagePath"
     ).single("image"),
+    validate,
     checkIfEmptyBody,
     updateTodo
   );
